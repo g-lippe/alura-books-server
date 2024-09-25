@@ -15,8 +15,15 @@ function getLivros(req, res) {
 function getLivro(req, res) {
   try {
     const id = req.params.id
-    const livro = getLivroPorID(id)
-    res.send(livro)
+
+    // Validade provided ID
+    if (id && Number(id)) {
+      const livro = getLivroPorID(id)
+      res.send(livro)
+    } else {
+      res.status(422)
+      res.send("ID inválido")
+    }
   } catch (error) {
     res.status(500)
     res.send(error.message)
@@ -40,10 +47,16 @@ function postLivro(req, res) {
 function patchLivro(req, res) {
   try {
     const id = req.params.id
-    const modificacoes = req.body
 
-    modificaLivro(modificacoes, id)
-    res.send("Livro alterado com sucesso")
+    // Validade provided ID
+    if (id && Number(id)) {
+      const modificacoes = req.body
+      modificaLivro(modificacoes, id)
+      res.send("Livro alterado com sucesso")
+    } else {
+      res.status(422)
+      res.send("ID inválido")
+    }
   } catch (error) {
     res.status(500)
     res.send(error.message)
@@ -54,8 +67,15 @@ function patchLivro(req, res) {
 function deleteLivro(req, res) {
   try {
     const id = req.params.id
-    excluiLivro(id)
-    res.send("Livro excluído com sucesso")
+
+    // Validade provided ID
+    if (id && Number(id)) {
+      excluiLivro(id)
+      res.send("Livro excluído com sucesso")
+    } else {
+      res.status(422)
+      res.send("ID inválido")
+    }
   } catch (error) {
     res.status(500)
     res.send(error.message)
