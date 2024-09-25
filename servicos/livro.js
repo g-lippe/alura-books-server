@@ -26,9 +26,18 @@ function modificaLivro(modificacoes, id) {
   fs.writeFileSync("livros.json", JSON.stringify(livros))
 }
 
+function excluiLivro(id) {
+  let livros = getTodosLivros()
+  const indiceExcluir = livros.findIndex(livro => livro.id == id)
+  livros.splice(indiceExcluir, 1) 
+
+  fs.writeFileSync("livros.json", JSON.stringify(livros))
+}
+
 module.exports = {
   getTodosLivros,
   getLivroPorID,
   insereLivro,
-  modificaLivro
+  modificaLivro,
+  excluiLivro
 }
