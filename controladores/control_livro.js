@@ -1,6 +1,8 @@
 const { getTodosLivros, getLivroPorID, insereLivro, modificaLivro, excluiLivro } = require('../servicos/livro');
 
 function getLivros(req, res) {
+  // Allow Cors
+  // res.header("Access-Control-Allow-Origin", "*");
   try {
     const livros = getTodosLivros()
     res.send(livros)
