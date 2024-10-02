@@ -14,8 +14,20 @@ function excluiFavorito(id) {
   fs.writeFileSync("favoritos.json", JSON.stringify(livros))
 }
 
+function insereFavorito(livroNovo) {
+  const favoritos = getTodosFavoritos()  
+  const livros =  JSON.parse(fs.readFileSync("livros.json"))
+
+  const livroInserido = livros.find(livro => livro.id == livroNovo.id)
+  const novaListaFavoritos = [...livros, livroInserido]
+
+  fs.writeFileSync("favoritos.json", JSON.stringify(novaListaFavoritos))
+}
+
+
 
 module.exports = {
   getTodosFavoritos,
-  excluiFavorito
+  excluiFavorito,
+  insereFavorito
 }
