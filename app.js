@@ -1,5 +1,6 @@
 const express = require("express");
 const rotaLivro = require("./rotas/livro");
+const rotaFavorito = require("./rotas/favorito");
 const cors = require("cors");
 
 const app = express()
@@ -16,6 +17,7 @@ app.use(cors({
 const port = 8000
 
 app.use('/livros', rotaLivro)
+app.use('/favoritos', rotaFavorito)
 
 
 app.listen(port, () => {
