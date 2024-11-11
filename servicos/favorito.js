@@ -9,17 +9,17 @@ function getTodosFavoritos() {
 function excluiFavorito(id) {
   let livros = getTodosFavoritos()
   const indiceExcluir = livros.findIndex(livro => livro.id == id)
-  livros.splice(indiceExcluir, 1) 
+  livros.splice(indiceExcluir, 1)
 
   fs.writeFileSync("favoritos.json", JSON.stringify(livros))
 }
 
-function insereFavorito(livroNovo) {
-  const favoritos = getTodosFavoritos()  
-  const livros =  JSON.parse(fs.readFileSync("livros.json"))
+function insereFavorito(IDLivroNovo) {
+  const favoritos = getTodosFavoritos()
+  const livros = JSON.parse(fs.readFileSync("livros.json"))
 
-  const livroInserido = livros.find(livro => livro.id == livroNovo.id)
-  const novaListaFavoritos = [...livros, livroInserido]
+  const livroInserido = livros.find(livro => livro.id == IDLivroNovo)
+  const novaListaFavoritos = [...favoritos, livroInserido]
 
   fs.writeFileSync("favoritos.json", JSON.stringify(novaListaFavoritos))
 }
